@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Iman Najib — Robotics & Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0e1217;
+    --panel:#161b22;
+    --panel-2:#1b212b;
+    --line:#262e3a;
+    --ink:#e7ebf2;
+    --muted:#8a93a3;
+    --amber:#ffb000;
+    --amber-dim:#3a2e12;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .mono{font-family:"JetBrains Mono",monospace;}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;background:rgba(14,18,23,.82);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;
+    height:60px;}
+  .brand{font-family:"Space Grotesk";font-weight:700;letter-spacing:.02em;}
+  .brand b{color:var(--amber);}
+  .nav-links{display:flex;gap:26px;font-size:.82rem;}
+  .nav-links a{font-family:"JetBrains Mono",monospace;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;
+    transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a.cta{color:var(--amber);}
+
+  /* hero */
+  header.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);}
+  header.hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:46px 46px;opacity:.20;
+    -webkit-mask-image:radial-gradient(ellipse 90% 80% at 30% 0%,#000 30%,transparent 75%);
+            mask-image:radial-gradient(ellipse 90% 80% at 30% 0%,#000 30%,transparent 75%);
+  }
+  .hero-inner{position:relative;padding:88px 0 64px;}
+  .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--amber);
+    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;margin:0 0 22px;}
+  h1{font-family:"Space Grotesk";font-weight:700;
+    font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.02;margin:0;
+    letter-spacing:-.02em;}
+  h1 .light{color:var(--muted);font-weight:500;}
+  .lede{max-width:620px;margin:24px 0 0;color:#c2c9d4;font-size:1.06rem;}
+
+  /* telemetry strip */
+  .telemetry{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:10px;
+    overflow:hidden;margin:42px 0 36px;}
+  .tcell{background:var(--panel);padding:18px 20px;}
+  .tcell .v{font-family:"Space Grotesk";font-weight:700;font-size:1.5rem;color:var(--amber);}
+  .tcell .l{font-family:"JetBrains Mono",monospace;font-size:.66rem;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.1em;margin-top:4px;}
+
+  .btns{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{font-family:"JetBrains Mono",monospace;font-size:.78rem;letter-spacing:.04em;
+    padding:12px 20px;border-radius:8px;border:1px solid var(--line);
+    background:var(--panel);transition:.2s;display:inline-flex;align-items:center;gap:8px;}
+  .btn:hover{border-color:var(--muted);transform:translateY(-1px);}
+  .btn.primary{background:var(--amber);color:#1a1205;border-color:var(--amber);font-weight:700;}
+  .btn.primary:hover{box-shadow:0 6px 22px -8px var(--amber);}
+
+  /* section */
+  section{padding:74px 0;border-bottom:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px;}
+  .sec-head .idx{font-family:"JetBrains Mono",monospace;color:var(--amber);font-size:.8rem;}
+  .sec-head h2{font-family:"Space Grotesk";font-weight:600;font-size:1.55rem;margin:0;letter-spacing:-.01em;}
+  .sec-head .rule{flex:1;height:1px;background:var(--line);}
+
+  /* build cards */
+  .builds{display:grid;gap:22px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;transition:border-color .25s,transform .25s;}
+  .card:hover{border-color:#3b4555;transform:translateY(-2px);}
+  .card-grid{display:grid;grid-template-columns:1.15fr 1fr;}
+  @media(max-width:760px){.card-grid{grid-template-columns:1fr;}}
+  .card-body{padding:28px 28px 26px;}
+  .card-tag{display:inline-flex;align-items:center;gap:7px;font-family:"JetBrains Mono",monospace;
+    font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:4px 10px;border-radius:20px;border:1px solid var(--line);color:var(--muted);}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber);}
+  .dot.idle{background:#5b6472;box-shadow:none;}
+  .card h3{font-family:"Space Grotesk";font-weight:600;font-size:1.35rem;margin:16px 0 4px;letter-spacing:-.01em;}
+  .card .role{font-family:"JetBrains Mono",monospace;font-size:.74rem;color:var(--amber);margin-bottom:14px;}
+  .card p{color:#bfc7d2;font-size:.96rem;margin:0 0 18px;}
+  .tech{display:flex;flex-wrap:wrap;gap:8px;}
+  .tech span{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--muted);
+    border:1px solid var(--line);border-radius:6px;padding:4px 9px;}
+  .card-links{display:flex;gap:18px;margin-top:20px;}
+  .card-links a{font-family:"JetBrains Mono",monospace;font-size:.74rem;color:var(--amber);
+    border-bottom:1px solid transparent;transition:.2s;}
+  .card-links a:hover{border-bottom-color:var(--amber);}
+
+  /* spec panel */
+  .spec{background:var(--panel-2);border-left:1px solid var(--line);padding:26px 26px;}
+  @media(max-width:760px){.spec{border-left:none;border-top:1px solid var(--line);}}
+  .spec .spec-label{font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--muted);
+    letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;}
+  .spec dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:11px 16px;
+    font-family:"JetBrains Mono",monospace;font-size:.78rem;}
+  .spec dt{color:var(--muted);}
+  .spec dd{margin:0;color:var(--ink);text-align:right;}
+  /* image frame placeholder */
+  .frame{aspect-ratio:16/10;background:
+      repeating-linear-gradient(45deg,#141a22 0 12px,#11161d 12px 24px);
+    border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:.7rem;text-align:center;
+    letter-spacing:.08em;}
+  .full .card-grid{grid-template-columns:1fr;}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about p{color:#c2c9d4;font-size:1.02rem;margin:0 0 16px;}
+  .skills h4{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--amber);
+    letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;}
+  .skills .grp{margin-bottom:22px;}
+  .skills .row{display:flex;flex-wrap:wrap;gap:8px;}
+  .skills .row span{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:#cdd4de;
+    border:1px solid var(--line);border-radius:6px;padding:5px 10px;background:var(--panel);}
+
+  /* footer */
+  footer{padding:60px 0 70px;}
+  .foot-head{font-family:"Space Grotesk";font-weight:600;font-size:1.9rem;margin:0 0 8px;letter-spacing:-.01em;}
+  .foot-sub{color:var(--muted);margin:0 0 26px;}
+  .foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
+  @media(prefers-reduced-motion:reduce){
+    *{transition:none!important;scroll-behavior:auto!important;}
+    .reveal{opacity:1!important;transform:none!important;}
+  }
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">IMAN <b>NAJIB</b></div>
+    <div class="nav-links">
+      <a href="#builds">Builds</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/your-github" target="_blank" rel="noopener">GitHub</a>
+      <a class="cta" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Robotics // Embedded Systems // CS</p>
+    <h1>I build autonomous robots<br><span class="light">from the metal up.</span></h1>
+    <p class="lede">I design, machine, wire, and program robots end to end, from custom gearboxes in CAD to the control software that lets them sense and move on their own. Computer Science and Political Science at Williams College, and self-taught since 15.</p>
+
+    <div class="telemetry">
+      <div class="tcell"><div class="v">50+</div><div class="l">Components / build</div></div>
+      <div class="tcell"><div class="v">7</div><div class="l">Custom gearboxes</div></div>
+      <div class="tcell"><div class="v">14</div><div class="l">Device CAN bus</div></div>
+      <div class="tcell"><div class="v">&lt;0.7s</div><div class="l">Autonomous alignment</div></div>
+    </div>
+
+    <div class="btns">
+      <a class="btn primary" href="#builds">View builds</a>
+      <a class="btn" href="https://github.com/your-github" target="_blank" rel="noopener">GitHub &#8599;</a>
+      <a class="btn" href="mailto:in3@williams.edu">Email</a>
+    </div>
+  </div>
+</header>
+
+<section id="builds">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="idx">01</span><h2>Selected builds</h2><div class="rule"></div>
+    </div>
+
+    <div class="builds">
+
+      <!-- BUILD 1 -->
+      <article class="card reveal">
+        <div class="card-grid">
+          <div class="card-body">
+            <span class="card-tag"><span class="dot"></span>Operational</span>
+            <h3>Vision-Guided Mechatronics Robot</h3>
+            <div class="role">Personal project // 2025</div>
+            <p>A fully custom robot built from scratch: 50+ mechanical and electronic components and seven gearboxes I designed in Fusion 360. A computer-vision perception pipeline locates targets and feeds a control loop that aligns the machine autonomously, with no operator input.</p>
+            <div class="tech"><span>Java</span><span>C</span><span>Limelight</span><span>AprilTag</span><span>CAN bus</span><span>Fusion 360</span></div>
+            <div class="card-links">
+              <a href="https://github.com/your-github" target="_blank" rel="noopener">Code &#8599;</a>
+              <a href="#" target="_blank" rel="noopener">Demo video &#8599;</a>
+            </div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">// system spec</div>
+            <dl>
+              <dt>Build</dt><dd>50+ parts</dd>
+              <dt>Drivetrain</dt><dd>7 custom gearboxes</dd>
+              <dt>Comms</dt><dd>14-device CAN</dd>
+              <dt>Perception</dt><dd>Limelight / AprilTag</dd>
+              <dt>Control</dt><dd>PID, &lt;0.7s lock</dd>
+              <dt>Stack</dt><dd>Java / C</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <!-- BUILD 2 -->
+      <article class="card reveal">
+        <div class="card-grid">
+          <div class="card-body">
+            <span class="card-tag"><span class="dot"></span>Deployed</span>
+            <h3>FIRST Robotics Team 5130 — Competition Codebase</h3>
+            <div class="role">Founder &amp; lead developer // 2023&ndash;present</div>
+            <p>I founded the team and wrote the codebase that runs our swerve-drive competition robot: a command-based Java application across five subsystems, with a full autonomous stack and a 14-device CAN network. We reached districts every season we competed and qualified for nationals.</p>
+            <div class="tech"><span>Java</span><span>WPILib</span><span>Gradle</span><span>Swerve drive</span><span>Odometry</span></div>
+            <div class="card-links">
+              <a href="https://github.com/your-github" target="_blank" rel="noopener">Code &#8599;</a>
+            </div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">// system spec</div>
+            <dl>
+              <dt>Architecture</dt><dd>Command-based</dd>
+              <dt>Subsystems</dt><dd>5</dd>
+              <dt>Autonomy</dt><dd>Traj. + path follow</dd>
+              <dt>Tracking</dt><dd>Odometry + gyro</dd>
+              <dt>Hardware</dt><dd>14-device CAN</dd>
+              <dt>Result</dt><dd>Nationals</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <!-- BUILD 3 -->
+      <article class="card reveal">
+        <div class="card-grid">
+          <div class="card-body">
+            <span class="card-tag"><span class="dot"></span>In progress</span>
+            <h3>Embedded Control in C</h3>
+            <div class="role">Personal project // Summer 2026</div>
+            <p>A from-scratch robotics project written in C, focused on low-level control and sensor handling on embedded hardware. [Add one line on what it controls and the hardware target once it takes shape.]</p>
+            <div class="tech"><span>C</span><span>Embedded</span><span>Real-time control</span></div>
+            <div class="card-links">
+              <a href="https://github.com/your-github" target="_blank" rel="noopener">Code &#8599;</a>
+            </div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">// system spec</div>
+            <dl>
+              <dt>Language</dt><dd>C</dd>
+              <dt>Target</dt><dd>Embedded MCU</dd>
+              <dt>Focus</dt><dd>Control loop</dd>
+              <dt>Status</dt><dd>Building</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <!-- BUILD 4 -->
+      <article class="card reveal full">
+        <div class="card-grid">
+          <div class="card-body">
+            <span class="card-tag"><span class="dot"></span>Complete</span>
+            <h3>Systems Programming in C</h3>
+            <div class="role">Computer Organization // coursework</div>
+            <p>Low-level systems work in C: a configurable cache simulator modeling hits, misses, and evictions, and a dynamic memory allocator built on an explicit free list with coalescing. Both required reasoning directly about how programs use memory and time.</p>
+            <div class="tech"><span>C</span><span>Memory management</span><span>OS concepts</span><span>Y86-64</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="idx">02</span><h2>About</h2><div class="rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about reveal">
+        <p>I started building at 15. I founded FIRST Robotics Team 5130 at a school with no computer science or STEM teachers, taught myself to program from public forums and documentation, and made the case to the local school board for real investment in STEM, securing $10,000 in funding for the program.</p>
+        <p>Since then I have led the team to the national championship and still mentor it today. I care most about systems I can own end to end, where the mechanical, electrical, and software pieces all have to work together under real conditions, not just on a bench.</p>
+        <p>I study Computer Science and Political Science at Williams College.</p>
+      </div>
+      <div class="skills reveal">
+        <div class="grp">
+          <h4>Languages</h4>
+          <div class="row"><span>Java</span><span>C</span><span>R</span><span>Y86-64 ASM</span></div>
+        </div>
+        <div class="grp">
+          <h4>Robotics &amp; systems</h4>
+          <div class="row"><span>CAN bus</span><span>AprilTag / vision</span><span>PID control</span><span>Autonomy</span><span>Embedded</span><span>Fusion 360</span></div>
+        </div>
+        <div class="grp">
+          <h4>Tools</h4>
+          <div class="row"><span>Git</span><span>Unix / Linux</span><span>Gradle</span><span>WPILib</span><span>tidyverse</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-head reveal">Let&rsquo;s build something.</p>
+    <p class="foot-sub reveal">Open to robotics, systems, and software internships.</p>
+    <div class="foot-links reveal">
+      <a class="btn primary" href="mailto:in3@williams.edu">in3@williams.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/iman-najib-00b720340" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+      <a class="btn" href="https://github.com/your-github" target="_blank" rel="noopener">GitHub &#8599;</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume &#8599;</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
