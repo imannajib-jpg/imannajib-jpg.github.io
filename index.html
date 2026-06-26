@@ -147,6 +147,10 @@
   .dgroup ul{margin:6px 0 0;padding-left:18px;color:#c6cdd8;font-size:.94rem;}
   .dgroup li{margin-bottom:5px;}
 
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .gallery img{width:100%;border:1px solid var(--line);border-radius:8px;display:block;}
+  .dgroup video{width:100%;border:1px solid var(--line);border-radius:8px;margin-top:10px;background:#000;}
+
   :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
 
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
@@ -198,64 +202,63 @@
     <div class="sec-head reveal"><span class="idx">01</span><h2>Selected builds</h2><div class="rule"></div></div>
     <div class="builds">
 
-      <!-- BUILD 1: vision robot -->
+      <!-- BUILD 1: Umizoomi hardware -->
       <article class="card reveal">
         <div class="media">
-          <img src="vision-robot.jpg" alt="Vision-guided robot" onerror="this.remove()" />
-          <a class="play" href="#" target="_blank" rel="noopener">&#9658; Watch demo</a>
+          <img src="robot.png" alt="Umizoomi competition robot" onerror="this.remove()" />
         </div>
         <div class="card-grid">
           <div class="card-body">
             <span class="card-tag"><span class="dot"></span>Operational</span>
-            <h3>Vision-Guided Mechatronics Robot</h3>
-            <div class="role">Personal project // latest</div>
-            <p>My latest build, centered on computer vision. It shares the swerve and CAN architecture of my competition robot, with the Limelight vision pipeline as the focus: detecting AprilTags and feeding pose into the control loop for autonomous targeting.</p>
-            <div class="tech"><span>Java</span><span>Limelight</span><span>AprilTag</span><span>CAN bus</span><span>Fusion 360</span></div>
+            <h3>Umizoomi &mdash; Omnidirectional Competition Robot</h3>
+            <div class="role">FIRST Robotics Team 5130 // competition robot</div>
+            <p>Full custom competition robot on an aluminum frame with an omnidirectional swerve drivetrain, a 14-device CAN bus network, Pigeon 2 IMU for field orientation, a high-ratio climber, and a custom shooter gearbox. Modeled in Fusion 360 and programmed in Java.</p>
+            <div class="tech"><span>Java</span><span>WPILib</span><span>Swerve</span><span>CAN bus</span><span>Pigeon 2</span><span>Fusion 360</span></div>
             <div class="card-links">
-              <button data-modal="dtl-vision">View details &rarr;</button>
+              <button data-modal="dtl-umizoomi">View details &rarr;</button>
               <a href="https://github.com/imannajib-jpg" target="_blank" rel="noopener">Code &#8599;</a>
             </div>
           </div>
           <div class="spec">
             <div class="spec-label">// system spec</div>
             <dl>
-              <dt>Focus</dt><dd>Vision processing</dd>
-              <dt>Coprocessor</dt><dd>Limelight</dd>
-              <dt>Targets</dt><dd>AprilTag</dd>
-              <dt>Drivetrain</dt><dd>Swerve / CAN</dd>
-              <dt>CAD</dt><dd>Fusion 360</dd>
-              <dt>Stack</dt><dd>Java</dd>
+              <dt>Frame</dt><dd>Aluminum + PC</dd>
+              <dt>Drivetrain</dt><dd>Swerve, omni</dd>
+              <dt>IMU</dt><dd>Pigeon 2</dd>
+              <dt>Network</dt><dd>14-device CAN</dd>
+              <dt>Climber</dt><dd>High-ratio gear</dd>
+              <dt>Power</dt><dd>12V + PDP</dd>
             </dl>
           </div>
         </div>
       </article>
 
-      <!-- BUILD 2: FRC 5130 -->
+      <!-- BUILD 2: Limelight + PathPlanner -->
       <article class="card reveal">
         <div class="media">
-          <img src="frc-5130.jpg" alt="FIRST Robotics Team 5130 robot" onerror="this.remove()" />
+          <img src="pathplanner.png" alt="PathPlanner autonomous routine" onerror="this.remove()" />
         </div>
         <div class="card-grid">
           <div class="card-body">
             <span class="card-tag"><span class="dot"></span>Deployed</span>
-            <h3>FIRST Robotics Team 5130 — Competition Robot</h3>
-            <div class="role">Founder &amp; lead developer // 2023&ndash;present</div>
-            <p>The competition robot I founded the team to build: a swerve-drive machine on an aluminum frame, with a full motor-controller CAN network, a Pigeon 2 IMU for field orientation, a climber subsystem, and a RoboRIO running Java with Limelight vision and PathPlanner autonomy.</p>
-            <div class="tech"><span>Java</span><span>WPILib</span><span>Swerve</span><span>Pigeon 2</span><span>PathPlanner</span><span>CAN bus</span></div>
+            <h3>Limelight Vision &amp; PathPlanner Autonomy</h3>
+            <div class="role">Umizoomi software upgrade // perception &amp; autonomous routing</div>
+            <p>After building Umizoomi's hardware, I implemented the full vision and autonomy stack: Limelight coprocessor integration with AprilTag calibration for pose-based targeting, and PathPlanner for writing and deploying full field autonomous routines.</p>
+            <div class="tech"><span>Java</span><span>Limelight</span><span>AprilTag</span><span>PathPlanner</span><span>RoboRIO</span></div>
             <div class="card-links">
-              <button data-modal="dtl-frc">View details &rarr;</button>
+              <button data-modal="dtl-vision-stack">View details &rarr;</button>
               <a href="https://github.com/imannajib-jpg" target="_blank" rel="noopener">Code &#8599;</a>
             </div>
           </div>
           <div class="spec">
             <div class="spec-label">// system spec</div>
             <dl>
-              <dt>Drivetrain</dt><dd>Swerve, omni</dd>
-              <dt>IMU</dt><dd>Pigeon 2</dd>
-              <dt>Controller</dt><dd>RoboRIO</dd>
-              <dt>Vision</dt><dd>Limelight</dd>
+              <dt>Coprocessor</dt><dd>Limelight</dd>
+              <dt>Targets</dt><dd>AprilTag</dd>
+              <dt>Pose</dt><dd>Field-relative</dd>
               <dt>Autonomy</dt><dd>PathPlanner</dd>
-              <dt>Frame</dt><dd>Aluminum + PC</dd>
+              <dt>Controller</dt><dd>RoboRIO</dd>
+              <dt>Driver cam</dt><dd>USB webcam</dd>
             </dl>
           </div>
         </div>
@@ -340,71 +343,81 @@
 <!-- detail content (hidden, loaded into modal) -->
 <div class="dtl-src" hidden>
 
-  <div id="dtl-vision" data-title="Vision-Guided Mechatronics Robot" data-role="Personal project // latest">
+  <div id="dtl-umizoomi" data-title="Umizoomi — Omnidirectional Competition Robot" data-role="FIRST Robotics Team 5130 // competition robot">
     <div class="dgroup">
       <div class="dlabel">// overview</div>
-      <p>My most recent robot, built to push the vision side of autonomy. It carries the same swerve and CAN bus architecture as my competition robot, but the emphasis here is on perception: getting a camera to tell the robot precisely where it is and what it is looking at, then acting on that. Modeled in Fusion 360.</p>
+      <p>Umizoomi is my full competition robot, named for its omnidirectional swerve drivetrain. It is built on an aluminum frame with custom polycarbonate panels, a 14-device CAN bus network, a Pigeon 2 IMU, a high-ratio climber, and a custom shooter gearbox I designed in Fusion 360. Programmed in Java on WPILib.</p>
     </div>
     <div class="dgroup">
-      <div class="dlabel">// vision &amp; perception</div>
+      <div class="dlabel">// drivetrain</div>
       <ul>
-        <li>Limelight smart camera used as a dedicated vision coprocessor.</li>
-        <li>Tuned against the official Limelight documentation, with AprilTag calibration for accurate tag detection and pose estimation.</li>
-        <li>Pose data feeds the control loop so the robot can locate and align to targets autonomously.</li>
+        <li>Omnidirectional swerve drive on an aluminum frame, which is where the name comes from.</li>
+        <li>Spark MAX motor controllers daisy-chained on a 14-device CAN bus network.</li>
+        <li>CTRE Pigeon 2 IMU for field-relative orientation and balancing.</li>
       </ul>
     </div>
     <div class="dgroup">
-      <div class="dlabel">// shared architecture</div>
+      <div class="dlabel">// mechanisms</div>
       <ul>
-        <li>Swerve-style omnidirectional drivetrain.</li>
-        <li>Motor controllers networked over a daisy-chained CAN bus.</li>
-        <li>Programmed in Java.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="dtl-frc" data-title="FIRST Robotics Team 5130 — Competition Robot" data-role="Founder &amp; lead developer // 2023-present">
-    <div class="dgroup">
-      <div class="dlabel">// overview</div>
-      <p>The swerve-drive competition robot I founded the team to design and build, programmed in Java on WPILib and modeled in Fusion 360. Omnidirectional drivetrain on an aluminum frame, with a full sensor and vision stack and scripted autonomous routines.</p>
-    </div>
-    <div class="dgroup">
-      <div class="dlabel">// drivetrain &amp; motion</div>
-      <ul>
-        <li>Swerve modules for omnidirectional movement on an aluminum chassis.</li>
-        <li>Spark MAX motor controllers driving the drivetrain, tuned with PID for precise speed and heading.</li>
-        <li>CTRE Pigeon 2 IMU for field-relative orientation and balancing routines.</li>
-        <li>Dedicated climber subsystem geared at a higher reduction ratio for the extra torque and holding power needed to lift the robot.</li>
+        <li>Custom climber subsystem geared at a higher reduction ratio to supply the torque needed to lift the robot.</li>
+        <li>Custom shooter gearbox designed in Fusion 360.</li>
       </ul>
     </div>
     <div class="dgroup">
       <div class="dlabel">// electrical &amp; power</div>
       <ul>
         <li>12V battery feeding a Power Distribution Panel through correctly gauged wiring.</li>
-        <li>Motor controllers daisy-chained on a CAN bus network for communication.</li>
-      </ul>
-    </div>
-    <div class="dgroup">
-      <div class="dlabel">// control &amp; vision</div>
-      <ul>
-        <li>RoboRIO as the main robot controller.</li>
-        <li>USB web camera streamed for driver view.</li>
-        <li>Limelight coprocessor with onboard camera for AprilTag detection.</li>
-      </ul>
-    </div>
-    <div class="dgroup">
-      <div class="dlabel">// autonomy &amp; software</div>
-      <ul>
-        <li>Written in Java on the WPILib framework.</li>
-        <li>PathPlanner used to author field routines and full autonomous paths.</li>
+        <li>All motor controllers and sensors networked over CAN bus.</li>
       </ul>
     </div>
     <div class="dgroup">
       <div class="dlabel">// fabrication</div>
       <ul>
-        <li>Modeled in Fusion 360.</li>
-        <li>Structural panels were power-cut: started in acrylic, then moved to polycarbonate to eliminate stress fractures and survive vibration and impact.</li>
+        <li>Fully modeled in Fusion 360 before building.</li>
+        <li>Structural panels started in acrylic and were upgraded to polycarbonate to eliminate stress fractures under competition loads.</li>
       </ul>
+    </div>
+    <div class="dgroup">
+      <div class="dlabel">// build gallery</div>
+      <div class="gallery">
+        <img src="wiring.png" alt="Wiring prototype" onerror="this.remove()" />
+        <img src="gearbox.jpg" alt="Shooter gearbox CAD" onerror="this.remove()" />
+      </div>
+    </div>
+    <div class="dgroup">
+      <div class="dlabel">// in action</div>
+      <video controls preload="metadata"><source src="pickup.mp4" type="video/mp4"></video>
+    </div>
+  </div>
+
+  <div id="dtl-vision-stack" data-title="Limelight Vision &amp; PathPlanner Autonomy" data-role="Umizoomi software upgrade // perception &amp; autonomous routing">
+    <div class="dgroup">
+      <div class="dlabel">// overview</div>
+      <p>After building Umizoomi's hardware, I implemented the full vision processing and autonomous routing stack on top of it. This involved integrating a Limelight smart camera as a dedicated vision coprocessor, calibrating it for AprilTag detection, and wiring the pose output into the control loop so the robot can target and align autonomously. PathPlanner handles the autonomous field routines.</p>
+    </div>
+    <div class="dgroup">
+      <div class="dlabel">// limelight vision</div>
+      <ul>
+        <li>Limelight 3 mounted on the robot as a standalone coprocessor running its own vision pipeline.</li>
+        <li>AprilTag calibration performed using the Limelight documentation to achieve accurate field-relative pose estimation.</li>
+        <li>Pose data fed into the robot's control loop for closed-loop targeting and autonomous alignment.</li>
+        <li>USB webcam streamed separately to the driver station for operator view alongside the Limelight feed.</li>
+      </ul>
+    </div>
+    <div class="dgroup">
+      <div class="dlabel">// pathplanner autonomy</div>
+      <ul>
+        <li>PathPlanner used to author and deploy full field autonomous routines, including multi-step paths and timed sequences.</li>
+        <li>Autonomous paths tested and tuned iteratively against physical robot performance.</li>
+      </ul>
+    </div>
+    <div class="dgroup">
+      <div class="dlabel">// gallery &amp; in action</div>
+      <div class="gallery">
+        <img src="pathplanner.png" alt="PathPlanner autonomous routine" onerror="this.remove()" />
+        <img src="testing.png" alt="Angle testing" onerror="this.remove()" />
+      </div>
+      <video controls preload="metadata" style="margin-top:10px"><source src="auto.mp4" type="video/mp4"></video>
     </div>
   </div>
 
